@@ -1,0 +1,22 @@
+{
+	"name": "datalake1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://anishdlsrc.dfs.core.windows.net/",
+			"tenant": "2be2625b-86ef-4b57-8a0a-7f5f34b9d703",
+			"servicePrincipalId": "08babd5d-0097-4f95-9c43-3a25b8a51d72",
+			"servicePrincipalCredentialType": "ServicePrincipalKey",
+			"servicePrincipalCredential": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "kv1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "secretdata"
+			}
+		}
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"name": "gc-adf-dev",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2f25fa1d-6785-4cdb-94ce-f85d7718f287",
+		"tenantId": "2be2625b-86ef-4b57-8a0a-7f5f34b9d703"
+	}
+}

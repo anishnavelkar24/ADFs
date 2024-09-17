@@ -1,0 +1,24 @@
+{
+	"name": "AzureSqlDatabase_src",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "gcserver.database.windows.net",
+			"database": "azuredbsrc",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "gcadmin",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "kv1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "dbpw1"
+			}
+		}
+	}
+}
