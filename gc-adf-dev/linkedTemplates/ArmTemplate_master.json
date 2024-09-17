@@ -1,0 +1,119 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "gc-adf-dev"
+		},
+		"AzureSqlDatabase_src_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "gcserver.database.windows.net"
+		},
+		"AzureSqlDatabase_src_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "azuredbsrc"
+		},
+		"AzureSqlDatabase_src_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "gcadmin"
+		},
+		"RestService_src_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://airlabs.co/api/v9/airlines"
+		},
+		"adlssink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://gcdlsink.dfs.core.windows.net/"
+		},
+		"adlssink_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "2be2625b-86ef-4b57-8a0a-7f5f34b9d703"
+		},
+		"adlssink_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "08babd5d-0097-4f95-9c43-3a25b8a51d72"
+		},
+		"datalake1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://anishdlsrc.dfs.core.windows.net/"
+		},
+		"datalake1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "2be2625b-86ef-4b57-8a0a-7f5f34b9d703"
+		},
+		"datalake1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "08babd5d-0097-4f95-9c43-3a25b8a51d72"
+		},
+		"kv1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://anishkvdev.vault.azure.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "gc-adf-dev_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"RestService_src_properties_typeProperties_url": {
+						"value": "[parameters('RestService_src_properties_typeProperties_url')]"
+					},
+					"kv1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('kv1_properties_typeProperties_baseUrl')]"
+					},
+					"AzureSqlDatabase_src_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase_src_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase_src_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase_src_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase_src_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase_src_properties_typeProperties_userName')]"
+					},
+					"adlssink_properties_typeProperties_url": {
+						"value": "[parameters('adlssink_properties_typeProperties_url')]"
+					},
+					"adlssink_properties_typeProperties_tenant": {
+						"value": "[parameters('adlssink_properties_typeProperties_tenant')]"
+					},
+					"adlssink_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('adlssink_properties_typeProperties_servicePrincipalId')]"
+					},
+					"datalake1_properties_typeProperties_url": {
+						"value": "[parameters('datalake1_properties_typeProperties_url')]"
+					},
+					"datalake1_properties_typeProperties_tenant": {
+						"value": "[parameters('datalake1_properties_typeProperties_tenant')]"
+					},
+					"datalake1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('datalake1_properties_typeProperties_servicePrincipalId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
